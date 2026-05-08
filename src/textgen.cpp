@@ -8,7 +8,7 @@
 #include <vector>
 #include <string>
 
-MarkovTextGenerator::MarkovTextGenerator(int npref, int maxgen) 
+MarkovTextGenerator::MarkovTextGenerator(int npref, int maxgen)
     : NPREF(npref), MAXGEN(maxgen), rng(std::random_device{}()) {
     }
 
@@ -47,13 +47,15 @@ bool MarkovTextGenerator::loadText(const std::string& filename) {
     return true;
 }
 
-std::string MarkovTextGenerator::getRandomSuffix(const std::vector<std::string>& suffixes) {
+std::string MarkovTextGenerator::getRandomSuffix
+(const std::vector<std::string>& suffixes) {
     if (suffixes.empty()) return "";
     std::uniform_int_distribution<size_t> dist(0, suffixes.size() - 1);
     return suffixes[dist(rng)];
 }
 
-void MarkovTextGenerator::addSuffix(const Prefix& prefix, const std::string& suffix) {
+void MarkovTextGenerator::addSuffix
+(const Prefix& prefix, const std::string& suffix) {
     statetab[prefix].push_back(suffix);
     if (firstPrefix.empty()) firstPrefix = prefix;
 }
