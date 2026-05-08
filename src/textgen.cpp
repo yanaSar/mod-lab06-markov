@@ -1,12 +1,15 @@
+// Copyright 2021 GHA Test Team
 #include "../include/textgen.h"
 #include <fstream>
 #include <sstream>
 #include <iostream>
 #include <algorithm>
 #include <cctype>
+#include <vector>
+#include <string>
 
 MarkovTextGenerator::MarkovTextGenerator(int npref, int maxgen) 
-    : NPREF(npref), MAXGEN(maxgen), rng(std::random_device{}()) {}
+    : NPREF(npref), MAXGEN(maxgen), rng(std::random_device{}()) { }
 
 bool MarkovTextGenerator::loadText(const std::string& filename) {
     std::ifstream file(filename);
@@ -21,8 +24,8 @@ bool MarkovTextGenerator::loadText(const std::string& filename) {
             words.push_back(word);
         }
     }
-    
-    if (words.size() < (size_t)NPREF + 1) return false;
+
+    if (words.size() < static_cast<size_t>(NPREF) + 1) return false;
 
     // Построение таблицы префикс->суффикс
     statetab.clear();

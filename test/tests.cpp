@@ -4,8 +4,6 @@
 #include <fstream>
 #include <algorithm>
 
-using namespace std;
-
 class MarkovTextGeneratorTest : public ::testing::Test {
 protected:
     void SetUp() override {
@@ -47,8 +45,8 @@ TEST_F(MarkovTextGeneratorTest, SingleSuffixSelection) {
     MarkovTextGenerator::Prefix prefix = {"test", "word"};
     gen->addSuffix(prefix, "only");
     
-    string result = gen->generate();
-    EXPECT_TRUE(result.find("only") != string::npos);
+    std::string result = gen->generate();
+    EXPECT_TRUE(result.find("only") != std::string::npos);
 }
 
 // Тест 4: Выбор из нескольких суффиксов
@@ -81,8 +79,8 @@ TEST_F(MarkovTextGeneratorTest, GenerationLength) {
     smallGen.addSuffix({"b", "c"}, "d");
     smallGen.addSuffix({"c", "d"}, "e");
     
-    string result = smallGen.generate();
-    int wordCount = count(result.begin(), result.end(), ' ') + 1;
+    std::string result = smallGen.generate();
+    int wordCount = std::count(result.begin(), result.end(), ' ') + 1;
     
     EXPECT_LE(wordCount, 20);
 }
@@ -90,14 +88,14 @@ TEST_F(MarkovTextGeneratorTest, GenerationLength) {
 // Тест 6: Обработка пустой таблицы
 TEST_F(MarkovTextGeneratorTest, EmptyTable) {
     MarkovTextGenerator emptyGen(2, 100);
-    string result = emptyGen.generate();
+    std::string result = emptyGen.generate();
     EXPECT_EQ(result, "Таблица пуста");
 }
 
 // Тест 7: Загрузка текста из файла
 TEST_F(MarkovTextGeneratorTest, LoadFromFile) {
     // Создаём тестовый файл
-    ofstream testFile("test_input.txt");
+    std::ofstream testFile("test_input.txt");
     testFile << "one two three four five six seven eight nine ten";
     testFile.close();
     
@@ -141,8 +139,8 @@ TEST_F(MarkovTextGeneratorTest, EndOfTextHandling) {
     chainGen.addSuffix({"x", "y"}, "z");
     chainGen.addSuffix({"y", "z"}, "");  // пустой суффикс - конец
     
-    string result = chainGen.generate();
-    EXPECT_TRUE(result.find("x y z") != string::npos);
+    std::string result = chainGen.generate();
+    EXPECT_TRUE(result.find("x y z") != std::string::npos);
 }
 
 // Тест 11: Сохранение результата в файл
@@ -151,10 +149,10 @@ TEST_F(MarkovTextGeneratorTest, SaveToFile) {
     gen->setSeed(1);
     
     bool saved = gen->saveResult("test_output.txt");
-    ifstream check("test_output.txt");
+    std::ifstream check("test_output.txt");
     bool exists = check.good();
     check.close();
-    remove("test_output.txt");
+    std::remove("test_output.txt");
     
     EXPECT_TRUE(saved);
     EXPECT_TRUE(exists);
