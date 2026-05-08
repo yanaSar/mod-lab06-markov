@@ -9,7 +9,8 @@
 #include <string>
 
 MarkovTextGenerator::MarkovTextGenerator(int npref, int maxgen) 
-    : NPREF(npref), MAXGEN(maxgen), rng(std::random_device{}()) { }
+    : NPREF(npref), MAXGEN(maxgen), rng(std::random_device{}()) {
+    }
 
 bool MarkovTextGenerator::loadText(const std::string& filename) {
     std::ifstream file(filename);

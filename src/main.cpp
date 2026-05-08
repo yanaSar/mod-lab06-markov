@@ -1,6 +1,7 @@
 // Copyright 2021 GHA Test Team
-#include "../include/textgen.h"
 #include <iostream>
+#include "../include/textgen.h"
+#include <string>
 
 int main() {
     MarkovTextGenerator generator(2, 1000);

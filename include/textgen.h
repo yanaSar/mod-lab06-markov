@@ -9,7 +9,7 @@
 #include <random>
 
 class MarkovTextGenerator {
-public: 
+ public:
     using Prefix = std::deque<std::string>;
     using StateTable = std::map<Prefix, std::vector<std::string>>;
 
@@ -24,7 +24,7 @@ public:
     const StateTable& getStateTable() const { return statetab; }
     void setSeed(unsigned seed) { rng.seed(seed); }
 
-private: 
+ private:
     int NPREF;
     int MAXGEN;
     StateTable statetab;
