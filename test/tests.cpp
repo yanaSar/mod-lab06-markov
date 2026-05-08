@@ -1,9 +1,9 @@
 // Copyright 2021 GHA Test Team
-#include "../include/textgen.h"
 #include <fstream>
 #include <algorithm>
 #include <gtest/gtest.h>
 #include <string>
+#include "../include/textgen.h"
 
 class MarkovTextGeneratorTest : public ::testing::Test {
  protected:

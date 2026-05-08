@@ -1,7 +1,7 @@
 // Copyright 2021 GHA Test Team
-#include "../include/textgen.h"
 #include <iostream>
 #include <string>
+#include "../include/textgen.h"
 
 int main() {
     MarkovTextGenerator generator(2, 1000);
@@ -9,7 +9,7 @@ int main() {
     std::string inputFile = "input.txt";
 
     if (!generator.loadText(inputFile)) {
-        std::cerr << "Не удалось загрузить " << inputFile << 
+        std::cerr << "Не удалось загрузить " << inputFile <<
         ", создаю тестовую таблицу\n";
 
         MarkovTextGenerator::Prefix p1 = {"жил", "старик"};
