@@ -1,7 +1,7 @@
 // Copyright 2021 GHA Test Team
+#include <gtest/gtest.h>
 #include <fstream>
 #include <algorithm>
-#include <gtest/gtest.h>
 #include <string>
 #include "../include/textgen.h"
 
